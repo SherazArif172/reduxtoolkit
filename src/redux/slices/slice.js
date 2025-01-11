@@ -5,6 +5,8 @@ export const createUser = createAsyncThunk(
   "createUser",
   async (data, { rejectWithValue }) => {
     try {
+      console.log(data);
+
       const response = await axios.post(
         "https://678265b3c51d092c3dcf593f.mockapi.io/crude",
         data
@@ -24,7 +26,7 @@ export const slice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  //   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(createUser.pending, (state) => {
