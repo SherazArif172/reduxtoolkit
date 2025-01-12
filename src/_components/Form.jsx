@@ -13,8 +13,12 @@ const Form = () => {
   const collectedData = (e) => {
     e.preventDefault();
     console.log(user);
-
     dispatch(createUser(user));
+    // Reset the user state
+    setUser({});
+
+    // Reset the form fields
+    e.target.reset();
   };
 
   return (

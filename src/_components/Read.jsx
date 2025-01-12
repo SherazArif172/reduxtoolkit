@@ -1,0 +1,26 @@
+import React from "react";
+
+const Read = () => {
+  return (
+    <div>
+      <div class="flex justify-center items-center dark:bg-gray-800 h-screen w-full">
+        <div class="relative cursor-pointer dark:text-white">
+          <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg dark:bg-gray-200"></span>
+          <div class="relative p-6 bg-white dark:bg-gray-800 border-2 border-indigo-500 dark:border-gray-300 rounded-lg hover:scale-105 transition duration-500">
+            <div class="flex items-center">
+              <span class="text-xl">😎</span>
+              <h3 class="my-2 ml-3 text-lg font-bold text-gray-800 dark:text-white">
+                Cool Feature
+              </h3>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300">
+              This is the short description of your feature.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Read;
