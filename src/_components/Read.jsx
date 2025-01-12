@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { readUser } from "../redux/slices/slice";
+import PopUp from "./PopUp";
 
 const Read = () => {
   const dispatch = useDispatch();
+  const [id, setId] = useState();
+  const [showPopUp, setShowPopUp] = useState(false);
   const { users, loading } = useSelector((state) => state.app);
   useEffect(() => {
     dispatch(readUser());
@@ -15,6 +18,7 @@ const Read = () => {
 
   return (
     <>
+      {showPopUp && <PopUp />}
       <div className="flex justify-center bg-white h-screen w-full ">
         <div className="cursor-pointer dark:text-white  grid grid-cols-3 gap-2">
           {users.data &&
@@ -38,9 +42,12 @@ const Read = () => {
                   {data.age}
                 </p>
                 <div className="flex justify-between mt-6 ">
-                  <a href="#" className="bg-white text-black p-3 rounded-md">
+                  <button
+                    className="bg-white text-black p-3 rounded-md"
+                    onClick={() => [setId(data.id), setShowPopUp(true)]}
+                  >
                     view
-                  </a>
+                  </button>
                   <a href="#" className="bg-white text-black p-3 rounded-md">
                     edit
                   </a>
