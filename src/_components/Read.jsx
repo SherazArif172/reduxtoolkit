@@ -1,25 +1,58 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { readUser } from "../redux/slices/slice";
 
 const Read = () => {
+  const dispatch = useDispatch();
+  const { users, loading } = useSelector((state) => state.app);
+  useEffect(() => {
+    dispatch(readUser());
+  }, []);
+
+  if (loading) {
+    return <h2>Loading</h2>;
+  }
+
   return (
-    <div>
-      <div class="flex justify-center items-center dark:bg-gray-800 h-screen w-full">
-        <div class="relative cursor-pointer dark:text-white">
-          <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg dark:bg-gray-200"></span>
-          <div class="relative p-6 bg-white dark:bg-gray-800 border-2 border-indigo-500 dark:border-gray-300 rounded-lg hover:scale-105 transition duration-500">
-            <div class="flex items-center">
-              <span class="text-xl">😎</span>
-              <h3 class="my-2 ml-3 text-lg font-bold text-gray-800 dark:text-white">
-                Cool Feature
-              </h3>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300">
-              This is the short description of your feature.
-            </p>
-          </div>
+    <>
+      <div className="flex justify-center bg-white h-screen w-full ">
+        <div className="cursor-pointer dark:text-white  grid grid-cols-3 gap-2">
+          {users.data &&
+            users.data.map((data) => (
+              <div
+                key={data.id}
+                className="p-6 bg-white dark:bg-gray-800 border-2 border-indigo-500 dark:border-gray-300 rounded-lg hover:scale-105 transition duration-500"
+              >
+                <div className="flex items-center">
+                  <h3 className="my-2  text-lg font-bold text-gray-800 dark:text-white">
+                    {data.name}
+                  </h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 mt-3">
+                  {data.email}
+                </p>
+                <p className="text-gray-600 dark:text-gray-300 mt-3">
+                  {data.gender}
+                </p>
+                <p className="text-gray-600 dark:text-gray-300 mt-3">
+                  {data.age}
+                </p>
+                <div className="flex justify-between mt-6 ">
+                  <a href="#" className="bg-white text-black p-3 rounded-md">
+                    view
+                  </a>
+                  <a href="#" className="bg-white text-black p-3 rounded-md">
+                    edit
+                  </a>
+                  <a href="#" className="bg-white text-black p-3 rounded-md">
+                    delete
+                  </a>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../redux/slices/slice";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const UserData = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -19,6 +21,7 @@ const Form = () => {
 
     // Reset the form fields
     e.target.reset();
+    navigate("/read");
   };
 
   return (
